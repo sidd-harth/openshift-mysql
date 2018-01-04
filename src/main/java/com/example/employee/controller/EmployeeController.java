@@ -20,7 +20,7 @@ public class EmployeeController {
 
     @GetMapping("/info")
     public String info() {
-        return "Hello, first make an POST call & then call GET, PUT, DELETE methods";
+        return "Hello, MySql DB has been populated with 1 Million records with id's from 10 to 1000009";
     }
     
     @GetMapping("/employees")
