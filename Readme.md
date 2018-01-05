@@ -13,8 +13,8 @@ Build Restful CRUD API for a simple Note-Taking application using Spring Boot, M
 ## Steps to Setup
 
 **1. Credits**
-
-```callicoder
+```bash
+callicoder
 ```
 
 **2. Create Mysql database**
