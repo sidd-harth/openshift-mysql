@@ -2,6 +2,7 @@ package com.example.employee.controller;
 
 import com.example.employee.model.Employee;
 import com.example.employee.repository.EmployeeRepository;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
+   // @HystrixCommand(fallbackMethod = "getDataFallBack")
     public ResponseEntity<Employee> getemployeeById(@PathVariable(value = "id") Long employeeId) {
         Employee employee = employeeRepository.findOne(employeeId);
         if(employee == null) {
