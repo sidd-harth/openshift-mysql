@@ -55,7 +55,7 @@ public class EmployeeController {
         System.out.println("response of db " + ResponseEntity.ok().body(employee));
         
         
-        String baseUrl = "http://browser-service-nodejs-mongdb.7e14.starter-us-west-2.openshiftapps.com/specific/"+id;
+        String baseUrl = "http://browser-service-nodejs-mongdb.7e14.starter-us-west-2.openshiftapps.com/specific/"+employeeId;
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> response=null;
 		try{
