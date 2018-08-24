@@ -51,8 +51,8 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
         
-        String response1 = ResponseEntity.ok().body(employee);
-        System.out.println("response of db " + response.getBody());
+       // String response1 = ResponseEntity.ok().body(employee);
+        System.out.println("response of db " + ResponseEntity.ok().body(employee));
         
         
         String baseUrl = "http://browser-service-nodejs-mongdb.7e14.starter-us-west-2.openshiftapps.com/specific/"+id;
@@ -67,7 +67,7 @@ public class EmployeeController {
 		}
 		System.out.println(response.getBody());
 		
-        return("[" + response.getBody() + "," + response1 + "]");
+        return("[" + response.getBody() + "," + ResponseEntity.ok().body(employee) + "]");
         
         //return ResponseEntity.ok().body(employee);
     }
