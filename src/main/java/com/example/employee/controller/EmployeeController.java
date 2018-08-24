@@ -29,6 +29,10 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
+    
+    /** 
+   original code for getting specific record
+   
     @GetMapping("/employees/{id}")
    // @HystrixCommand(fallbackMethod = "getDataFallBack")
     public ResponseEntity<Employee> getemployeeById(@PathVariable(value = "id") Long employeeId) {
@@ -37,6 +41,42 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(employee);
+    } **/
+    
+    @GetMapping("/employees/{id}")
+    @HystrixCommand(fallbackMethod = "getDataFallBack")
+    public ResponseEntity<Employee> getemployeeById(@PathVariable(value = "id") Long employeeId) {
+        Employee employee = employeeRepository.findOne(employeeId);
+        if(employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        String response1 = ResponseEntity.ok().body(employee);
+        System.out.println("response of db " + response.getBody());
+        
+        
+        String baseUrl = "http://browser-service-nodejs-mongdb.7e14.starter-us-west-2.openshiftapps.com/specific/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response=null;
+		try{
+		response=restTemplate.exchange(baseUrl,
+				HttpMethod.GET, getHeaders(),String.class);
+		}catch (Exception ex)
+		{
+			System.out.println(ex);
+		}
+		System.out.println(response.getBody());
+		
+        return("[" + response.getBody() + "," + response1 + "]");
+        
+        //return ResponseEntity.ok().body(employee);
+    }
+public ResponseEntity<Employee> getDataFallBack(@PathVariable(value = "id") Long employeeId) {
+       // Employee employee = employeeRepository.findOne(employeeId);
+      //  if(employee == null) {
+     //      return ResponseEntity.notFound().build();
+      //  }
+        return ("okkkkkkkkk");
     }
 
     @PostMapping("/employees")
