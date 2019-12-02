@@ -32,7 +32,7 @@ public class EmployeeController {
     
     /** 
    original code for getting specific record
-   
+   */
     @GetMapping("/employees/{id}")
    // @HystrixCommand(fallbackMethod = "getDataFallBack")
     public ResponseEntity<Employee> getemployeeById(@PathVariable(value = "id") Long employeeId) {
@@ -41,8 +41,9 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(employee);
-    } **/
+    } 
     
+	/*
     @GetMapping("/employees/{id}")
     @HystrixCommand(fallbackMethod = "getDataFallBack")
     public ResponseEntity<Employee> getemployeeById(@PathVariable(value = "id") Long employeeId) {
@@ -78,7 +79,7 @@ public ResponseEntity<Employee> getDataFallBack(@PathVariable(value = "id") Long
       //  }
         return ("okkkkkkkkk");
     }
-
+*/
     @PostMapping("/employees")
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         return employeeRepository.save(employee);
